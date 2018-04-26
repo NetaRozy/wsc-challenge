@@ -174,11 +174,8 @@ def get_my_video(text):
     j = json.loads(videos.text)
     video = j['videoResponseObjects'][0]
     return video
-
-vid = get_my_video('serbiaspainDunks')
-print (vid['videoUrl'])
-print (vid['thumbnail']['mediumThumbnailUrl'])
+#
+# vid = get_my_video('serbiaspainDunks')
+# print (vid['videoUrl'])
+# print (vid['thumbnail']['mediumThumbnailUrl'])
 # print get_video_url(create_event_video_id(get_event_id(game_id=30088, action_id=102), "testing"))
-
-
-

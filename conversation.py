@@ -23,6 +23,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 import random
 import logging
 import json
+import mainMethods
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -135,11 +136,18 @@ def received_information(bot, update, user_data):
     category = user_data['choice']
     user_data[category] = text
     del user_data['choice']
-
+    data = user_data['game'].split()
+    print(data[0])
+    print(data[2])
+    print(text)
+    vid = mainMethods.get_my_video(data[0] + data[2] + text)
+    url = vid['videoUrl']
+    thumbnail = vid['thumbnail']['mediumThumbnailUrl']
+    input = data[0] + data[1] + text
     update.message.reply_text("Neat! Just so you know, this is what you already told me:"
                               "{}"
-                              "You can tell me more, or change your opinion on something.".format(
-                                  facts_to_str(user_data)), reply_markup=markup)
+                              .format(
+                                  thumbnail), reply_markup=markup)
 
     return CHOOSING
 
