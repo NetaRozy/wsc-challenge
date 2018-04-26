@@ -1,7 +1,10 @@
 from async_upload import VideoTweet
+from tweetpy import tweepy_query
+from oauths import usr_auth, oauth_wsc
 
-def comment_video(oauth, file_path, text, tweet_id, usr_screen_name):
-    videoTweet = VideoTweet(file_path, oauth)
+
+def comment_video(file_path, text, tweet_id, usr_screen_name):
+    videoTweet = VideoTweet(file_path, oauth_wsc)
     videoTweet.upload_init()
     videoTweet.upload_append()
     videoTweet.upload_finalize()
@@ -17,4 +20,5 @@ def tweet_video(oauth, file_path, text):
     videoTweet.tweet(text)
 
 
-def get_tweets_from_query
+def get_tweets_from_query(quary):
+    return tweepy_query(usr_auth, quary)

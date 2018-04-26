@@ -3,8 +3,14 @@ import tweepy
 from oauths import usr_auth
 from oauths import yogev_auth
 
+def tweepy_query(auth, quary):
+    oauth = tweepy.OAuthHandler(auth['OAUTH_TOKEN'], auth['OAUTH_TOKEN_SECRET'])
+    oauth.set_access_token(auth['APP_KEY'], auth['APP_SECRET'])
 
+    api = tweepy.API(oauth)
+    tweets = api.search(q=quary)
 
+    return tweets
 
 def bot_tweets():
 

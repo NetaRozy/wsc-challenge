@@ -9,10 +9,10 @@ from oauths import usr_auth
 
 
 
-CONSUMER_KEY = usr_auth.OAUTH_TOKEN
-CONSUMER_SECRET = usr_auth.OAUTH_TOKEN_SECRET
-ACCESS_TOKEN = usr_auth.APP_KEY
-ACCESS_TOKEN_SECRET = usr_auth.APP_SECRET
+CONSUMER_KEY = usr_auth['OAUTH_TOKEN']
+CONSUMER_SECRET = usr_auth['OAUTH_TOKEN_SECRET']
+ACCESS_TOKEN = usr_auth['APP_KEY']
+ACCESS_TOKEN_SECRET = usr_auth['APP_SECRET']
 
 VIDEO_FILENAME = '/Users/yogev/code/hackidc/wsc-challenge/twitter/files/file.mp4'
 
