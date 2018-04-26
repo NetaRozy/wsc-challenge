@@ -144,12 +144,25 @@ class VideoTweet(object):
         self.processing_info = req.json().get('processing_info', None)
         self.check_status()
 
-    def tweet(self, text, usr_screen_name):
+    def tweet(self, text):
+        '''
+        Publishes Tweet with attached video
+        '''
+        request_data = {
+            'status': text,
+            'media_ids': self.media_id
+        }
+
+        req = requests.post(url=self.POST_TWEET_URL, data=request_data, auth=self.oauth)
+        print(req.json())
+
+    def tweet_comment(self, text, usr_screen_name, tweet_id):
         '''
         Publishes Tweet with attached video
         '''
         request_data = {
             'status': text + "\n{}".format(usr_screen_name),
+            'in_reply_to_status_id': tweet_id,
             'media_ids': self.media_id
         }
 

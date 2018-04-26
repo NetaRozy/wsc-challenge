@@ -8,7 +8,7 @@ if __name__ == '__main__':
     oauth = oauth_wsc
     file_path = video_path
     text = "TEST"
-    tweet_id = 989597544283025414
-    usr_screen_name = '@WHackidc'
+    tweet_id = 989622896732631041
+    usr_screen_name = '@yogevkr'
 
     comment_video(oauth, file_path, text, tweet_id, usr_screen_name)

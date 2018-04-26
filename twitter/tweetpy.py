@@ -1,7 +1,9 @@
 import tweepy
-from twython import Twython
+
 from oauths import usr_auth
 from oauths import yogev_auth
+
+
 
 
 def bot_tweets():
@@ -33,9 +35,9 @@ def bot_tweets():
 
     text = 'WOW! @{}'.format(status_screen_name)
 
-
-    # api.update_status(text, in_reply_to_status_id=status_id)
-    # file_path = '/Users/yogev/code/hackidc/wsc-challenge/twitter/files/index.png'
+    print(status_id)
+    print(status_screen_name)
+    api.update_status(text, in_reply_to_status_id=status_id)
 
     # api.update_with_media(file_path, status=text, in_reply_to_status_id=status_id)
 
@@ -60,19 +62,3 @@ def yogev_tweets():
 
     api.update_status("!")
 
-
-def upload_video_twython(auth):
-    twitter = Twython(usr_auth.APP_KEY, usr_auth.APP_SECRET,
-                      usr_auth.OAUTH_TOKEN, usr_auth.OAUTH_TOKEN_SECRET)
-
-    video = open('/Users/yogev/code/hackidc/wsc-challenge/twitter/files/film.mp4', 'rb')
-    response = twitter.upload_video(media=video, media_type='video/mp4')
-    twitter.update_status(status='WSC!', media_ids=[response['media_id']])
-
-
-def main():
-    bot_tweets()
-
-
-if __name__ == "__main__":
-    main()
