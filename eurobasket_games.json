@@ -1,0 +1,245 @@
+{
+    "AUGUST 31 THURSDAY": [{
+        "slovenia": "90",
+        "poland": "81"
+    }, {
+        "germany": "75",
+        "ukraine": "63"
+    }, {
+        "island": "61",
+        "greece": "90"
+    }, {
+        "lithuania": "77",
+        "georgia": "79"
+    }, {
+        "france": "84",
+        "finland": "86"
+    }, {
+        "italy": "69",
+        "israel": "48"
+    }],
+    "SEPTEMBER 1 FRIDAY": [{
+        "belgium": "103",
+        "great-britain": "90"
+    }, {
+        "hungary": "58",
+        "croatia": "67"
+    }, {
+        "serbia": "92",
+        "latvia": "82"
+    }, {
+        "spain": "99",
+        "montenegro": "60"
+    }, {
+        "romania": "68",
+        "czech-republic": "83"
+    }, {
+        "turkey": "73",
+        "russia": "76"
+    }],
+    "SEPTEMBER 2 SATurkeyDAY": [{
+        "poland": "91",
+        "island": "61"
+    }, {
+        "latvia": "92",
+        "belgium": "64"
+    }, {
+        "montenegro": "72",
+        "hungary": "48"
+    }, {
+        "georgia": "57",
+        "germany": "67"
+    }, {
+        "greece": "87",
+        "france": "95"
+    }, {
+        "russia": "75",
+        "serbia": "72"
+    }, {
+        "czech-republic": "56",
+        "spain": "93"
+    }, {
+        "ukraine": "66",
+        "italy": "78"
+    }, {
+        "finland": "78",
+        "slovenia": "81"
+    }, {
+        "croatia": "74",
+        "romania": "58"
+    }, {
+        "great-britain": "70",
+        "turkey": "84"
+    }, {
+        "israel": "73",
+        "lithuania": "88"
+    }],
+    "SEPTEMBER 3 SUNDAY": [{
+        "france": "115",
+        "island": "79"
+    }, {
+        "georgia": "81",
+        "ukraine": "88"
+    }, {
+        "slovenia": "78",
+        "greece": "72"
+    }, {
+        "lithuania": "78",
+        "italy": "73"
+    }, {
+        "finland": "90",
+        "poland": "87"
+    }, {
+        "germany": "80",
+        "israel": "82"
+    }],
+    "SEPTEMBER 4 MONDAY": [{
+        "latvia": "97",
+        "great-britain": "92"
+    }, {
+        "hungary": "85",
+        "czech-republic": "73"
+    }, {
+        "belgium": "67",
+        "russia": "76"
+    }, {
+        "montenegro": "72",
+        "croatia": "76"
+    }, {
+        "spain": "91",
+        "romania": "50"
+    }, {
+        "serbia": "80",
+        "turkey": "74"
+    }],
+    "SEPTEMBER 5 TUESDAY": [{
+        "island": "75",
+        "slovenia": "102"
+    }, {
+        "russia": "69",
+        "latvia": "84"
+    }, {
+        "czech-republic": "75",
+        "montenegro": "88"
+    }, {
+        "ukraine": "62",
+        "lithuania": "94"
+    }, {
+        "poland": "75",
+        "france": "78"
+    }, {
+        "great-britain": "68",
+        "serbia": "82"
+    }, {
+        "croatia": "73",
+        "spain": "79"
+    }, {
+        "italy": "55",
+        "germany": "61"
+    }, {
+        "greece": "77",
+        "finland": "89"
+    }, {
+        "romania": "71",
+        "hungary": "80"
+    }, {
+        "turkey": "78",
+        "belgium": "65"
+    }, {
+        "israel": "91",
+        "georgia": "104"
+    }],
+    "SEPTEMBER 6 WEDNESDAY": [{
+        "slovenia": "95",
+        "france": "78"
+    }, {
+        "germany": "72",
+        "lithuania": "89"
+    }, {
+        "greece": "95",
+        "poland": "77"
+    }, {
+        "georgia": "69",
+        "italy": "71"
+    }, {
+        "finland": "83",
+        "island": "79"
+    }, {
+        "israel": "64",
+        "ukraine": "88"
+    }],
+    "SEPTEMBER 7 THURSDAY": [{
+        "czech-republic": "69",
+        "croatia": "107"
+    }, {
+        "russia": "82",
+        "great-britain": "70"
+    }, {
+        "hungary": "64",
+        "spain": "87"
+    }, {
+        "belgium": "54",
+        "serbia": "74"
+    }, {
+        "montenegro": "86",
+        "romania": "69"
+    }, {
+        "latvia": "89",
+        "turkey": "79"
+    }],
+    "SEPTEMBER 9 SATurkeyDAY": [{
+        "slovenia": "79",
+        "ukraine": "55"
+    }, {
+        "germany": "84",
+        "france": "81"
+    }, {
+        "finland": "57",
+        "italy": "70"
+    }, {
+        "lithuania": "64",
+        "greece": "77"
+    }],
+    "SEPTEMBER 10 SUNDAY": [{
+        "latvia": "100",
+        "montenegro": "68"
+    }, {
+        "serbia": "86",
+        "hungary": "78"
+    }, {
+        "spain": "73",
+        "turkey": "56"
+    }, {
+        "croatia": "78",
+        "russia": "101"
+    }],
+    "SEPTEMBER 12 TUESDAY": [{
+        "germany": "72",
+        "spain": "84"
+    }, {
+        "slovenia": "103",
+        "latvia": "97"
+    }],
+    "SEPTEMBER 13 WEDNESDAY": [{
+        "greece": "69",
+        "russia": "74"
+    }, {
+        "italy": "67",
+        "serbia": "83"
+    }],
+    "SEPTEMBER 14 THURSDAY": [{
+        "spain": "72",
+        "slovenia": "92"
+    }],
+    "SEPTEMBER 15 FRIDAY": [{
+        "russia": "79",
+        "serbia": "87"
+    }],
+    "SEPTEMBER 17 SUNDAY": [{
+        "spain": "93",
+        "russia": "85"
+    }, {
+        "slovenia": "93",
+        "serbia": "85"
+    }]
+}
