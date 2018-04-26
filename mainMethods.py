@@ -30,5 +30,8 @@ def get_game_highlights_by_event(home, visitor, event):
 
     return wscHelperMethods.get_video_url(video_id)
 
-
+# to get the video url: vid['videoUrl'], to get the video thumbnail: vid['thumbnail']['mediumThumbnailUrl']
+def get_my_video(text):
+    vid = wscHelperMethods.get_my_video(text)
+    return vid
 
