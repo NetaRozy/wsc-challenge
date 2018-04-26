@@ -8,7 +8,7 @@ from oauths import yogev_auth
 
 def bot_tweets():
 
-    # //////// Configurations ////////
+    # //////// Configurations ///////
 
     auth = tweepy.OAuthHandler(usr_auth.OAUTH_TOKEN, usr_auth.OAUTH_TOKEN_SECRET)
     auth.set_access_token(auth.access_token, auth.access_token_secret)
