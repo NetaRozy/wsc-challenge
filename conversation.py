@@ -22,6 +22,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
                           ConversationHandler)
 import random
 import logging
+import json
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -69,9 +70,10 @@ def regular_choice(bot, update, user_data):
     return TYPING_REPLY
 
 def team(bot, update, user_data):
+    # We present the top 4 teams, with an option to enter one by your own.
     reply_keyboard = [['Slovenia', 'Serbia'],
                       ['Spain'],
-                      ['Russia']]
+                      ['Russia'], ['Other']]
     markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
     user_data['choice'] = update.message.text
@@ -84,12 +86,19 @@ def team(bot, update, user_data):
 def game(bot, update, user_data):
     team = update.message.text
 
+    games = []
+    with open('eurobasket_games.json') as euro:
+        euro = json.loads(euro.read())
+        for day in euro.keys():
+            for game in euro[day]:
+                if team.lower() in game.keys():
+                    keys = list(game.keys())
+                    games.append(["{} vs {} - {}".format(keys[0], keys[1], day.lower())])
+
+
+    print(games)
     # Query Team's latest games with XX api.
-    teams = ["Israel", "Germany", "Poland", "France", "Austria"]
-    reply_keyboard = [["{} vs {}".format(team, random.choice(teams))],
-                       ["{} vs {}".format(team, random.choice(teams))],
-                       ["{} vs {}".format(team, random.choice(teams))],
-                       ["{} vs {}".format(team, random.choice(teams))]]
+    reply_keyboard = games
     markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
     user_data['team'] = update.message.text
@@ -154,7 +163,11 @@ def error(bot, update, error):
 
 def main():
     # Create the Updater and pass it your bot's token.
-    updater = Updater("569973114:AAEeGqaFq6jM5ItwlGA0GdcDBGpO-ieQBXk")
+
+    f = open('token', 'r')
+    token = f.read().strip()
+    f.close()
+    updater = Updater(token)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
