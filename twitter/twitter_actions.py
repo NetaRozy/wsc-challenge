@@ -1,5 +1,5 @@
-from async_upload import VideoTweet
-from tweetpy import tweepy_query
+from apis.async_upload import VideoTweet
+from apis.tweetpy import tweepy_query
 from oauths import usr_auth, oauth_wsc
 
 

@@ -1,5 +1,18 @@
 from twitter_actions import *
-import csv
+import utils
+
+
+def filter_tweets_by_word(tweets, word):
+
+    filtered_tweets = []
+
+    for tweet in tweets:
+        if word in tweet.text.lower():
+            filtered_tweets.append(tweet)
+
+    return filtered_tweets
+
+
 
 
 if __name__ == '__main__':
@@ -14,12 +27,9 @@ if __name__ == '__main__':
 
     # comment_video(file_path, text, tweet_id, usr_screen_name)
 
+    data = utils.read_json('files/data.json')
+
     tweets = get_tweets_from_query("#wscchallenge")
 
-    for tweet in tweets:
-        print(tweet.text)
+    print(len(filter_tweets_by_word(tweets, 'slovenia')))
 
-    with open("actors.csv") as f:
-        reader = csv.reader(f)
-        next(reader)  # skip header
-        data = [r for r in reader]
