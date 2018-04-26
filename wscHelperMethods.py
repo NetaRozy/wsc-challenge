@@ -136,7 +136,7 @@ def get_event_ids(game_id=0, action_id=0, team_id=0, player_id=0):
     if player_id != 0:
         prms['request.playerIds'] = player_id
 
-    print prms
+    # print prms
     event_id = requests.request("GET", url+"SearchClipPbP", headers=headers, params=prms)
     # top_events = {}
     # top_events['game:'+event_id.json()[0]['game']['id']+'team:' ]
@@ -166,16 +166,18 @@ def get_my_video(text):
     if text != '':
         prms['request.searchText'] = text
 
-    print prms
+    # print prms
     videos = requests.request("GET", url + "GetVideos", headers=headers, params=prms)
     # top_events = {}
     # top_events['game:'+event_id.json()[0]['game']['id']+'team:' ]
     # print event_id.json()[0]['game']['id']
-    return videos['videoResponseObjects'][0]
+    j = json.loads(videos.text)
+    video = j['videoResponseObjects'][0]
+    return video
 
-# vid = get_my_video('serbiaspainDunks')
-# print vid['videoUrl']
-# print vid['thumbnail']['smallThumbnailUrl']
+vid = get_my_video('serbiaspainDunks')
+print (vid['videoUrl'])
+print (vid['thumbnail']['mediumThumbnailUrl'])
 # print get_video_url(create_event_video_id(get_event_id(game_id=30088, action_id=102), "testing"))
 
 
