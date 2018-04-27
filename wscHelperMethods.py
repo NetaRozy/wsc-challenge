@@ -117,7 +117,7 @@ def get_video_url(video_id):
 
 # print get_video_url(create_highlights(30088))
 
-time.sleep(15)
+# time.sleep(15)
 
 # print get_video_url(get_video_id(create_highlights(get_game_id())))
 
@@ -175,9 +175,9 @@ def get_my_video(text):
     video = j['videoResponseObjects'][0]
     return video
 
-vid = get_my_video('serbiaspainDunks')
-print (vid['videoUrl'])
-print (vid['thumbnail']['mediumThumbnailUrl'])
+# vid = get_my_video('serbiaspainDunks')
+# print (vid['videoUrl'])
+# print (vid['thumbnail']['mediumThumbnailUrl'])
 # print get_video_url(create_event_video_id(get_event_id(game_id=30088, action_id=102), "testing"))
 
 

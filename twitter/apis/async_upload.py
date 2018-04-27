@@ -161,7 +161,7 @@ class VideoTweet(object):
         Publishes Tweet with attached video
         '''
         request_data = {
-            'status': text + "\n{}".format(usr_screen_name),
+            'status': text + "\n@{}".format(usr_screen_name),
             'in_reply_to_status_id': tweet_id,
             'media_ids': self.media_id
         }
