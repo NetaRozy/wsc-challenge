@@ -38,7 +38,16 @@ def get_team_id(name):
     game_id = j['objects'][0]['id']
     return game_id
 
+def get_player_id(name):
+    prms = {'request.systemType': 'Eurobasket', 'request.text': name}
 
+    get_player_ids = requests.request("GET", url + "SearchPlayers", headers=headers, params=prms)
+
+    j = json.loads(get_player_ids.text)
+    game_id = j['objects'][0]['id']
+    return game_id
+
+# print(get_player_id('bogdanovic'))
 
 # def create_highlights (game_id):
 #
@@ -56,22 +65,26 @@ def get_team_id(name):
 #     return json.loads(vid_rule_id.text)['ruleId']
 
 
-def create_highlights(game_id):
+def create_game_highlights(game_id):
 
     #create highlights
     prms = {
       "systemType": "Eurobasket",
       "gameId": game_id,
-      "videoLength": "00:00:30"
+      "videoLength": "00:01:00"
     }
 
-    time.sleep(10)
     vid_rule_id = requests.request("POST", url+"CreateGameHighlights", headers=headers, json=prms)
+    time.sleep(10)
     rule_id = json.loads(vid_rule_id.text)['ruleId']
     prms = {"ruleId": rule_id}
 
     time.sleep(10)
     vid_id = requests.request("GET", url+"GetVideoId", headers=headers, params=prms)
+    # time.sleep(20)
+    # while(get_creation_status(vid_id) != 3):
+    #     print('here2')
+    #     time.sleep(2)
     return json.loads(vid_id.text)['videoId']
 
 # def get_video_id(rule_id):
@@ -91,6 +104,59 @@ def create_highlights(game_id):
 #     return json.loads(vid_id.text)['videoId']
 
 
+def create_team_highlights(team_name):
+
+    team_id = get_team_id(team_name)
+
+    #create highlights
+    prms = {
+      "system": "Eurobasket",
+      "subjectId": team_id,
+      "videoLength": "00:00:15",
+        "fromDate": "2017-08-1T07:58:13.8160956Z",
+        "toDate": "2017-10-1T07:58:13.8160956Z"
+    }
+
+    vid_rule_id = requests.request("POST", url+"CreateTeamHighlights", headers=headers, json=prms)
+    time.sleep(120)
+    rule_id = json.loads(vid_rule_id.text)['ruleId']
+    prms = {"ruleId": rule_id}
+
+    time.sleep(20)
+    vid_id = requests.request("GET", url+"GetVideoId", headers=headers, params=prms)
+    # time.sleep(20)
+    # while(get_creation_status(vid_id) != 3):
+    #     print('here2')
+    #     time.sleep(2)
+    return json.loads(vid_id.text)['videoId']
+
+print (create_team_highlights('slovenia'))
+def create_player_highlights(player_name):
+
+    player_id = get_player_id(player_name)
+
+    #create highlights
+    prms = {
+      "system": "Eurobasket",
+      "subjectId": player_id,
+      "videoLength": "00:01:00",
+        "fromDate": "2017-08-1T07:58:13.8160956Z",
+        "toDate": "2017-10-1T07:58:13.8160956Z"
+    }
+
+    vid_rule_id = requests.request("POST", url+"CreatePlayerHighlights", headers=headers, json=prms)
+    time.sleep(10)
+
+    rule_id = json.loads(vid_rule_id.text)['ruleId']
+    prms = {"ruleId": rule_id}
+
+    time.sleep(20)
+    vid_id = requests.request("GET", url+"GetVideoId", headers=headers, params=prms)
+    # time.sleep(20)
+    # while(get_creation_status(vid_id) != 3):
+    #     print('here2')
+    #     time.sleep(2)
+    return json.loads(vid_id.text)['videoId']
 
 def check_status(video_id):
     # check status
@@ -110,7 +176,7 @@ def get_video_url(video_id):
         "request.systemType": "Eurobasket"
     }
 
-    time.sleep(60)
+    # time.sleep(60)
     vid_url = requests.request("GET", url+"GetVideoUrl", headers=headers, params=prms)
 
     return json.loads(vid_url.text)['videoUrl']
@@ -157,8 +223,13 @@ def create_event_video_id(event_ids, event_name):
     }
 
     video_id = requests.request("POST", url+"CreateManual", headers=headers, json=prms)
+    # time.sleep(20)
+    # while(get_creation_status(video_id) != 3):
+    #     print('here')
+    #     time.sleep(2)
 
     return json.loads(video_id.text)['videoId']
+
 
 def get_my_video(text):
     prms = {"request.systemType": "Eurobasket"}
@@ -175,10 +246,22 @@ def get_my_video(text):
     video = j['videoResponseObjects'][0]
     return video
 
+
+# def get_creation_status(vid_id):
+#     prms = {"videoId": vid_id}
+#
+#     videos = requests.request("GET", url + "GetVideoCreationStatus", headers=headers, params=prms)
+#     # top_events = {}
+#     # top_events['game:'+event_id.json()[0]['game']['id']+'team:' ]
+#     # print event_id.json()[0]['game']['id']
+#     # j = json.loads(videos.text)
+#     # video = j['videoResponseObjects'][0]
+#     # return videos['videoCreationStatus']
+#     print (videos.text)
+#     return videos.text
 # vid = get_my_video('serbiaspainDunks')
-# print (vid['videoUrl'])
-# print (vid['thumbnail']['mediumThumbnailUrl'])
-# print get_video_url(create_event_video_id(get_event_id(game_id=30088, action_id=102), "testing"))
+# print(vid['videoUrl'])
+# print(vid['thumbnail']['mediumThumbnailUrl'])
 
-
+# print(get_creation_status(1986760))
 
