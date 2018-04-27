@@ -23,7 +23,6 @@ def filter_tweets_by_word(tweets, word):
 
     return filtered_tweets
 
-
 def filter_game_highlights(tweets):
 
     filtered_tweets = []
@@ -159,24 +158,9 @@ def add_to_blacklist(tweets):
     utils.add_to_blacklist(filtered_id_list)
 
 
-
-if __name__ == '__main__':
-    video_path = '/Users/yogev/code/hackidc/wsc-challenge/twitter/files/file.mp4'
-    #
-    # #
-    # oauth = oauth_wsc
-    # file_path = video_path
-    # text = "TEST"
-    # tweet_id = 989622896732631041
-    # usr_screen_name = '@yogevkr'
-
-    # comment_video(file_path, text, tweet_id, usr_screen_name)
-
-    ## GET TWEETS AND CREATE DICTIONARY ##
+def twitter_scan():
+    ## GET TWEETS, CREATE DICTIONARY AND FILTER ALREADY PUBLISHED TWEETS##
     tweets = check_blacklist(get_tweets_from_query("#wscchallenge"))
-
-    #CHECK IF TWEETS ALREADY PROCESSED
-
     gen_tweet_dictionary(tweets)
 
     ## FILTER FOR GAME / TEAM HIGHLIGHTS ##
@@ -189,8 +173,16 @@ if __name__ == '__main__':
 
     # print(two_teams)
     # print(one_team)
+
+    ## POST GAME HIGHLIGHTS
     post_game_hightlights(two_teams)
+
+    ## POST TEAM HIGHLIGHTS
     post_team_highlights(one_team)
 
+    ## ADD ALL TWEETS TO BLACKLIST
     add_to_blacklist(tweets)
 
+
+if __name__ == '__main__':
+    twitter_scan()
