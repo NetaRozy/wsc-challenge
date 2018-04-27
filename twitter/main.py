@@ -5,7 +5,6 @@ import random
 import urllib.request
 import moviepy.editor as mp
 
-DATA = utils.read_json('files/db.json')
 TWEETS_DICT = {}
 TWEETS_TEAMS = {}
 
@@ -29,10 +28,8 @@ def filter_game_highlights(tweets):
     id_list = []
     filtered_tweets_set = []
 
-    for word in DATA['GAME_HIGHLIGHTS']:
+    for word in utils.DATA['GAME_HIGHLIGHTS']:
         filtered_tweets += filter_tweets_by_word(tweets, word['word'])
-
-
 
     for tweet in filtered_tweets:
         if tweet.id not in id_list:
@@ -48,7 +45,7 @@ def filter_player_highlights(tweets):
     id_list = []
     filtered_tweets_set = []
 
-    for word in DATA['PLAYER_HIGHLIGHTS']:
+    for word in utils.DATA['PLAYER_HIGHLIGHTS']:
         filtered_tweets += filter_tweets_by_word(tweets, word['word'])
 
 
@@ -57,14 +54,13 @@ def filter_player_highlights(tweets):
             filtered_tweets_set.append(tweet)
             id_list += [tweet.id]
 
-
     return filtered_tweets_set
 
 def find_team_names(tweets):
 
     for tweet in tweets:
         TWEETS_TEAMS[tweet.id] = []
-        for team in DATA['TEAMS']:
+        for team in utils.DATA['TEAMS']:
             if team['name'].lower() in tweet.text.lower():
                 TWEETS_TEAMS[tweet.id] += [team['name'].lower()]
 
@@ -92,22 +88,26 @@ def post_game_hightlights(tweets):
         greetings = ["What a victory", "Great win", "Amazing game"]
         team1 = TWEETS_TEAMS[tweet.id][0]
         team2 = TWEETS_TEAMS[tweet.id][1]
-        message = "Check out the game highlights on WSC Sports!"
-        # print(message)
+        message = random.choice(greetings) + "! Check out the game highlights on WSC Sports!"
 
         print("Generating video for tweet " + str(tweet.id))
-        print("Fetching game highlights from WSC")
-        video = wsc.get_my_video(team1 + " " + team2)
-
-        print("Downloading file to server")
-        filename = str(tweet.id) + ".mp4"
-        urllib.request.urlretrieve(video['videoUrl'], "videos/" + filename)
-
-        print("Shrinking file to match twitters' annoying policy")
-        shrink_video(filename)
+        video = video_preprocess(team1 + " " + team2, tweet)
 
         print("Posting to tweeter")
-        comment_video("videos/shrinked_" + filename, message, tweet.id, tweet.author.screen_name)
+        comment_video(video, message, tweet.id, tweet.author.screen_name)
+
+def video_preprocess(get_video, tweet):
+    print("Fetching game highlights from WSC")
+    video = wsc.get_my_video(get_video)
+
+    print("Downloading file to server")
+    filename = str(tweet.id) + ".mp4"
+    urllib.request.urlretrieve(video['videoUrl'], "videos/" + filename)
+
+    print("Shrinking file to match twitters' annoying policy")
+    shrink_video(filename)
+
+    return "videos/shrinked_" + filename
 
 def post_team_highlights(tweets):
     # print(len(tweets))
@@ -115,25 +115,14 @@ def post_team_highlights(tweets):
     for tweet in tweets:
         team = TWEETS_TEAMS[tweet.id][0]
         to_date = tweet.created_at
+        message = random.choice(greetings) + "! Check out your teams' highlights on WSC Sports"
 
         print("Generating video for tweet " + str(tweet.id))
-        message = "Check out your teams' highlights on WSC Sports"
-        # print(message)
-
-        print("Fetching team highlights from WSC")
-        video = wsc.get_my_video(team + " top plays")
-
-        print("Downloading file to server")
-        filename = str(tweet.id) + ".mp4"
-        urllib.request.urlretrieve(video['videoUrl'], "videos/" + filename)
-
-        print("Shrinking file to match twitters' annoying policy")
-        shrink_video(filename)
+        video = video_preprocess(team + " top plays", tweet)
 
         print("Posting to tweeter")
-        comment_video("videos/shrinked_" + filename, message, tweet.id, tweet.author.screen_name)
+        comment_video(video, message, tweet.id, tweet.author.screen_name)
 
-        # print("files/video.mp3", message, tweet.id, tweet.author.screen_name)
 
 def shrink_video(path):
     clip = mp.VideoFileClip("videos/" + path)
@@ -156,7 +145,6 @@ def add_to_blacklist(tweets):
         filtered_id_list += [tweet.id]
     # print(filtered_id_list)
     utils.add_to_blacklist(filtered_id_list)
-
 
 def twitter_scan():
     ## GET TWEETS, CREATE DICTIONARY AND FILTER ALREADY PUBLISHED TWEETS##
@@ -182,6 +170,20 @@ def twitter_scan():
 
     ## ADD ALL TWEETS TO BLACKLIST
     add_to_blacklist(tweets)
+
+def text_process(msg):
+    teams = []
+    for team in utils.DATA['TEAMS']:
+        if team['name'].lower() in msg.lower():
+            teams += [team['name'].lower()]
+
+    if len(teams) == 2:
+        return teams[0] + " " + teams[1]
+
+    if len(team) == 1:
+        return teams[0] + " top plays"
+
+    return 0
 
 
 if __name__ == '__main__':

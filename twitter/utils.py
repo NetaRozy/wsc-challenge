@@ -1,5 +1,7 @@
 import json
 
+
+
 def read_json(path):
     with open(path) as json_data:
         data = json.load(json_data)
@@ -17,3 +19,5 @@ def add_to_blacklist(filtered_tweets_id):
 
 def filtered_tweets_id():
     return open('id.history', 'r').read().split('\n')
+
+DATA = read_json('files/db.json')
