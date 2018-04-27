@@ -49,7 +49,6 @@ def facts_to_str(user_data):
 
 
 def start(bot, update):
-
     update.message.reply_text(
         "Hi! we can make special highlights for you, just choose your topic:",
         reply_markup=markup)
@@ -70,6 +69,7 @@ def regular_choice(bot, update, user_data):
 
     return TYPING_REPLY
 
+
 def team(bot, update, user_data):
     # We present the top 4 teams, with an option to enter one by your own.
     reply_keyboard = [['Slovenia', 'Serbia'],
@@ -84,6 +84,7 @@ def team(bot, update, user_data):
 
     return GAME
 
+
 def game(bot, update, user_data):
     team = update.message.text
 
@@ -95,7 +96,6 @@ def game(bot, update, user_data):
                 if team.lower() in game.keys():
                     keys = list(game.keys())
                     games.append(["{} vs {} - {}".format(keys[0], keys[1], day.lower())])
-
 
     print(games)
     # Query Team's latest games with XX api.
@@ -109,6 +109,7 @@ def game(bot, update, user_data):
 
     return GAME_ACTIONS
 
+
 def game_actions(bot, update, user_data):
     reply_keyboard = [['3 PTS', '2 PTS'],
                       ['Dunks'], ['Blocks'],
@@ -121,8 +122,8 @@ def game_actions(bot, update, user_data):
         "Good chooise, what kind of events do you prefer?".format(update.message.text),
         reply_markup=markup)
 
-
     return TYPING_REPLY
+
 
 def custom_choice(bot, update):
     update.message.reply_text('Alright, please send me the category first, '
@@ -146,8 +147,8 @@ def received_information(bot, update, user_data):
     input = data[0] + data[1] + text
     update.message.reply_text("excelent, we made a special highlights video just for you, ENJOY!"" "
                               "{} {}"
-                              .format(
-                                  thumbnail, url), reply_markup=markup)
+        .format(
+        thumbnail, url), reply_markup=markup)
 
     return CHOOSING
 
@@ -179,13 +180,13 @@ def main():
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
-    
+
     # Add conversation handler with the states GENDER, PHOTO, LOCATION and BIO
     conv_handler = ConversationHandler(
 
         entry_points=[CommandHandler('start', start)],
 
-            states={
+        states={
             CHOOSING: [RegexHandler('^(Team)$',
                                     team,
                                     pass_user_data=True),
@@ -193,13 +194,13 @@ def main():
                                     custom_choice),
                        ],
             GAME: [MessageHandler(Filters.text,
-                                           game,
-                                           pass_user_data=True),
-                            ],
+                                  game,
+                                  pass_user_data=True),
+                   ],
             GAME_ACTIONS: [MessageHandler(Filters.text,
-                                           game_actions,
-                                           pass_user_data=True),
-                            ],
+                                          game_actions,
+                                          pass_user_data=True),
+                           ],
             # TYPING_CHOICE: [MessageHandler(Filters.text,
             #                                regular_choice,
             #                                pass_user_data=True),
@@ -230,3 +231,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
