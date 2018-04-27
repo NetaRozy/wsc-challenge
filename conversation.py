@@ -38,7 +38,6 @@ reply_keyboard = [['Highlights', 'Team'],
                   ['Done']]
 markup = ReplyKeyboardMarkup(reply_keyboard, one_time_keyboard=True)
 
-
 def facts_to_str(user_data):
     facts = list()
 
@@ -176,7 +175,7 @@ def main():
     # f = open('token', 'r')
     # token = f.read().strip()
     # f.close()
-    updater = Updater('512075931:AAFhxD7f5gBwVYcM7MadnR2-jRPbt0iFxhU')
+    updater = Updater('TOKEN')
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -231,4 +230,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
