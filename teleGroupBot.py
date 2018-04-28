@@ -10,6 +10,7 @@ import telegram
 import mainMethods
 from telegram.error import NetworkError, Unauthorized
 from time import sleep
+import oauths
 
 
 update_id = None
@@ -19,7 +20,7 @@ def main():
     """Run the bot."""
     global update_id
     # Telegram Bot Authorization Token
-    bot = telegram.Bot('584829818:AAFBMLYXOByRhUVmncQidsPNiECwKSg1zt8')
+    bot = telegram.Bot(oauths.GROUPS_BOT_TOKEN)
 
     # get the first pending update_id, this is so we can skip over it in case
     # we get an "Unauthorized" exception.

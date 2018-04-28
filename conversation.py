@@ -23,6 +23,7 @@ from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters, Rege
 import random
 import logging
 import json
+import oauths
 import mainMethods
 
 # Enable logging
@@ -176,7 +177,7 @@ def main():
     # token = f.read().strip()
     # f.close()
     
-    updater = Updater('512075931:AAFhxD7f5gBwVYcM7MadnR2-jRPbt0iFxhU')
+    updater = Updater(oauths.TELEGRAM_BOT_TOKEN)
 
 
     # Get the dispatcher to register handlers
