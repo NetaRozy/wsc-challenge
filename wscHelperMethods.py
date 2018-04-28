@@ -129,8 +129,7 @@ def create_team_highlights(team_name):
     #     print('here2')
     #     time.sleep(2)
     return json.loads(vid_id.text)['videoId']
-
-print (create_team_highlights('slovenia'))
+  
 def create_player_highlights(player_name):
 
     player_id = get_player_id(player_name)
@@ -246,7 +245,6 @@ def get_my_video(text):
     video = j['videoResponseObjects'][0]
     return video
 
-
 # def get_creation_status(vid_id):
 #     prms = {"videoId": vid_id}
 #
@@ -263,5 +261,5 @@ def get_my_video(text):
 # print(vid['videoUrl'])
 # print(vid['thumbnail']['mediumThumbnailUrl'])
 
-# print(get_creation_status(1986760))
 
+# print(get_creation_status(1986760))
