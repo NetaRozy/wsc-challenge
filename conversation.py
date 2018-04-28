@@ -175,7 +175,9 @@ def main():
     # f = open('token', 'r')
     # token = f.read().strip()
     # f.close()
-    updater = Updater('TOKEN')
+    
+    updater = Updater('512075931:AAFhxD7f5gBwVYcM7MadnR2-jRPbt0iFxhU')
+
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -230,3 +232,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    
