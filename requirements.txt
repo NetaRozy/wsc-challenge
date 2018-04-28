@@ -20,8 +20,6 @@ elasticsearch==5.2.0
 entrypoints==0.2.3
 enum34==1.1.6
 epydoc==3.0.1
--e git+git@bitbucket.org:cryptographs/es_crypto.git@1b13b6f326e6bfa057619b370e1e3247ecb87377#egg=es_crypto&subdirectory=src
--e git+https://source.developers.google.com/p/geshet158/r/es-wrapper@fdfeee1193d4a3028eab4468c626584a03e2cc33#egg=es_wrapper&subdirectory=src
 funcsigs==1.0.2
 functools32==3.2.3.post2
 futures==3.1.1
